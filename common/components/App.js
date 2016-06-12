@@ -17,7 +17,7 @@ const App = ({ children }) => (
 
 const styles = StyleSheet.create({
   root: {
-    maxWidth: 700,
+    maxWidth: 1000,
     color: '#000',
     margin: '2rem auto',
     padding: '0 1rem'
