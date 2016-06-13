@@ -1,34 +1,31 @@
 import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { StyleSheet, css } from 'aphrodite'
+import { connect } from 'react-redux'
 
-const MasonryColumn = ({ imgs, handleLoad }) => (
-  <div>
+
+const MasonryColumn = ({ imgs, handleOnLoad }) => (
+  <div className={css(styles.root)}>
     {
       imgs.map((img) =>
-        <img src={img.thumbUrl}/>)
+        <img className={css(styles.thumb)} src={img.thumbUrl} onLoad={handleOnLoad}/>)
     }
   </div>
 )
 
 MasonryColumn.PropTypes = {
-  imgs: PropTypes.array.isRequired
+  imgs: PropTypes.array.isRequired,
+  handleOnLoad: PropTypes.func.isRequired
 }
 
 const styles = StyleSheet.create({
   root: {
-    margin: '0 auto 1.5rem'
+    display: 'inline-block',
+    width: '300px',
+    'vertical-align': 'top'
   },
-  title: {
-    fontSize: 28,
-    textDecoration: 'none',
-    lineHeight: '1.2',
-    margin: '0 0 1.5rem',
-    color: '#000',
-    transition: '.3s opacity ease',
-    ':hover': {
-      opacity: 0.5
-    }
+  thumb: {
+    margin: '10px'
   }
 })
 

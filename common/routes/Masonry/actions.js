@@ -5,9 +5,10 @@ export function fetchImageList () {
     dispatch({ type: types.LOAD_MASONRY_REQUEST })
     return axios.get(`https://trays-proxy-2.herokuapp.com/https://dev.maketrays.com/api/loadBrowse`)
       .then(res => {
+        let data = res.data.filter(item => item.height)
         dispatch({
           type: types.LOAD_MASONRY_SUCCESS,
-          payload: res.data,
+          payload: data,
         })
       })
       .then(() => {
@@ -27,7 +28,10 @@ export function fetchImageList () {
 export function imageLoaded () {
   return (dispatch, getState) => {
     dispatch({ type: types.IMAGE_LOADED })
-    console.log(getState().masonry.loadingNum)
+
+    if (!getState().masonry.loadingNum) {
+      dispatch(setLoadingImages())
+    }
   }
 }
 
