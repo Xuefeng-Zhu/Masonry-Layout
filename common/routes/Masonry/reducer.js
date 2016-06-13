@@ -2,6 +2,7 @@ import * as types from '../../constants'
 import update from 'react/lib/update'
 
 export default function masonry (state = {
+  columns: [],
   isLoading: false,
   error: null
 }, action) {
