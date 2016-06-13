@@ -1,6 +1,6 @@
 import { provideHooks } from 'redial'
 import React, { PropTypes } from 'react'
-import { loadImages } from '../actions'
+import { fetchImageList } from '../actions'
 import { connect } from 'react-redux'
 import MasonryColumn from '../components/MasonryColumn'
 import { StyleSheet, css } from 'aphrodite'
@@ -8,7 +8,7 @@ import Helmet from 'react-helmet'
 import { selectMasonry } from '../reducer'
 
 const redial = {
-  fetch: ({ dispatch }) => dispatch(loadImages())
+  fetch: ({ dispatch }) => dispatch(fetchImageList())
 }
 
 const mapStateToProps = state => ({
@@ -25,7 +25,8 @@ const Masonry = ({ masonry }) => (
     }
 
     {!masonry.isLoading &&
-      masonry.data.map((item) => <img src={item.imageUrl}/>)} 
+      masonry.columns.map((column) => 
+        <MasonryColumn imgs={column.imgs}/>)} 
   </div>
 )
 

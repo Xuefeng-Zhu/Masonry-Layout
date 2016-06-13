@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import { Link } from 'react-router'
 import { StyleSheet, css } from 'aphrodite'
 
-const MasonryColumn = ({ post }) => (
+const MasonryColumn = ({ imgs, handleLoad }) => (
   <div>
-    test
+    {
+      imgs.map((img) =>
+        <img src={img.thumbUrl}/>)
+    }
   </div>
 )
+
+MasonryColumn.PropTypes = {
+  imgs: PropTypes.array.isRequired
+}
 
 const styles = StyleSheet.create({
   root: {
